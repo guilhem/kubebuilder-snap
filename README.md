@@ -6,7 +6,7 @@
 distributions.</p>
 
 <p align="center">
-<a href="https://build.snapcraft.io/user/guilhem/kubebuilder"><img src="https://build.snapcraft.io/badge/guilhem/kubebuilder.svg" alt="Snap Status"></a>
+<a href="https://build.snapcraft.io/user/guilhem/kubebuilder-snap"><img src="https://build.snapcraft.io/badge/guilhem/kubebuilder-snap.svg" alt="Snap Status"></a>
 </p>
 
 
