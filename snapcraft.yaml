@@ -1,0 +1,30 @@
+name: guilhem-kubebuilder
+summary: An interactive web server.
+description: |
+  HTTPLab let you inspect HTTP requests and forge responses.
+confinement: devmode
+base: core18
+adopt-info: build
+parts:
+  build:
+    plugin: go
+    go-importpath: sigs.k8s.io/kubebuilder
+    source: https://github.com/kubernetes-sigs/kubebuilder.git
+    source-type: git
+    override-pull: |
+        snapcraftctl pull
+        last_committed_tag="$(git describe --abbrev=0 --tags)"
+        git fetch
+        git checkout "${last_committed_tag}"
+
+        [ -n "$(echo ${last_committed_tag} | grep "-")" ] && grade=devel || grade=stable
+        snapcraftctl set-version "${last_committed_tag}"
+        snapcraftctl set-grade "$grade"
+    override-build: |
+      export GO111MODULE=on
+      install -d $SNAPCRAFT_PART_INSTALL/bin
+      CGO_ENABLED=0 go build -o $SNAPCRAFT_PART_INSTALL/bin/kubebuilder -a -ldflags '-extldflags "-static"' ./cmd
+
+apps:
+  kubebuilder:
+    command: bin/kubebuilder
