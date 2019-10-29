@@ -2,7 +2,7 @@ name: guilhem-kubebuilder
 summary: An interactive web server.
 description: |
   HTTPLab let you inspect HTTP requests and forge responses.
-confinement: devmode
+confinement: classic
 base: core18
 adopt-info: build
 parts:
